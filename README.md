@@ -16,13 +16,37 @@ A basic spring MVC design : Request Callstack : Controller -> Service -> Reposit
 
 Controllers :
 AtmController.java : exposes 2 rest api's 
-      - /locations : Lists all the atm addresses exposed by ING atm locator service as a proper JSON respone.
-      - /locations/{city} : Filters and lists all locations based on provided city as a proper JSON response.
+- /locations : Lists all the atm addresses exposed by ING atm locator service as a proper JSON respone.
+- /locations/{city} : Filters and lists all locations based on provided city as a proper JSON response.
 
 Services :
 AtmLocator.java : implements business logic behind the exposed web services utilizing output from repository.
 
 Repositories :
-AtmDataPopulator.java :
+AtmDataPopulator.java : utilizes spring rest-template for consuming the ING ATM locator service.
 
+User interface :
 
+- /home OR / : Home page.
+- /login     : Login page. uses in-memory auth : Credentials as:
+-                 username : user , password : password
+- /atm       : Page that lists all the atm addresses exposed by ING service in form of a Datatable which has all the functions available for sorting , Live search and pagination.
+
+Tools used :
+- Maven
+- JDK 7
+- Spring boot
+- Tomcat 7
+
+This module contains a  camel spring boot dependency, and does start a camel server , but is not being utilized as I have never worked on camel before and was not successful routing the service calls via camel.
+
+How to Run ?
+maven should be installed.
+
+- clone the repo.
+- mvn clean install 
+- Deploy to Tomcat 7
+
+OR
+- clone the repo.
+- mvn clean spring-boot:run
